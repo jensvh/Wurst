@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.mojang.authlib.GameProfile;
 
@@ -99,10 +98,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
 		target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z",
 		ordinal = 0), method = "tickMovement()V")
 	private boolean wurstIsUsingItem(ClientPlayerEntity player)
-	{
-		if(WurstClient.INSTANCE.getHax().noSlowdownHack.isEnabled())
-			return false;
-		
+	{	
 		return player.isUsingItem();
 	}
 	
@@ -125,15 +121,6 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
 	{
 		PlayerMoveEvent event = new PlayerMoveEvent(this);
 		EventManager.fire(event);
-	}
-	
-	@Inject(at = {@At("HEAD")},
-		method = {"isAutoJumpEnabled()Z"},
-		cancellable = true)
-	private void onIsAutoJumpEnabled(CallbackInfoReturnable<Boolean> cir)
-	{
-		if(!WurstClient.INSTANCE.getHax().stepHack.isAutoJumpAllowed())
-			cir.setReturnValue(false);
 	}
 	
 	@Inject(at = @At(value = "FIELD",
@@ -189,9 +176,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
 	@Override
 	protected float getJumpVelocity()
 	{
-		return super.getJumpVelocity()
-			+ WurstClient.INSTANCE.getHax().highJumpHack
-				.getAdditionalJumpMotion();
+		return super.getJumpVelocity();
 	}
 	
 	@Override

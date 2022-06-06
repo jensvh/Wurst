@@ -18,7 +18,6 @@ import net.wurstclient.commands.*;
 public final class CmdList
 {
 	public final AddAltCmd addAltCmd = new AddAltCmd();
-	public final AnnoyCmd annoyCmd = new AnnoyCmd();
 	public final AuthorCmd authorCmd = new AuthorCmd();
 	public final BindCmd bindCmd = new BindCmd();
 	public final BindsCmd bindsCmd = new BindsCmd();
@@ -26,7 +25,6 @@ public final class CmdList
 	public final BlockListCmd blockListCmd = new BlockListCmd();
 	public final ClearCmd clearCmd = new ClearCmd();
 	public final CopyItemCmd copyitemCmd = new CopyItemCmd();
-	public final DamageCmd damageCmd = new DamageCmd();
 	public final DigCmd digCmd = new DigCmd();
 	public final DropCmd dropCmd = new DropCmd();
 	public final EnabledHaxCmd enabledHaxCmd = new EnabledHaxCmd();
@@ -48,10 +46,8 @@ public final class CmdList
 	public final ModifyCmd modifyCmd = new ModifyCmd();
 	public final PathCmd pathCmd = new PathCmd();
 	public final PotionCmd potionCmd = new PotionCmd();
-	public final ProtectCmd protectCmd = new ProtectCmd();
 	public final RenameCmd renameCmd = new RenameCmd();
 	public final RepairCmd repairCmd = new RepairCmd();
-	public final RvCmd rvCmd = new RvCmd();
 	public final SvCmd svCmd = new SvCmd();
 	public final SayCmd sayCmd = new SayCmd();
 	public final SetBlockCmd setBlockCmd = new SetBlockCmd();
@@ -63,11 +59,8 @@ public final class CmdList
 	public final TacoCmd tacoCmd = new TacoCmd();
 	public final TCmd tCmd = new TCmd();
 	public final TooManyHaxCmd tooManyHaxCmd = new TooManyHaxCmd();
-	public final TpCmd tpCmd = new TpCmd();
 	public final UnbindCmd unbindCmd = new UnbindCmd();
-	public final VClipCmd vClipCmd = new VClipCmd();
 	public final ViewNbtCmd viewNbtCmd = new ViewNbtCmd();
-	public final XrayCmd xrayCmd = new XrayCmd();
 	
 	private final TreeMap<String, Command> cmds =
 		new TreeMap<>(String::compareToIgnoreCase);

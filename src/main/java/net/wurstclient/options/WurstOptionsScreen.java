@@ -23,7 +23,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.Util.OperatingSystem;
 import net.wurstclient.WurstClient;
 import net.wurstclient.commands.FriendsCmd;
-import net.wurstclient.hacks.XRayHack;
 import net.wurstclient.mixinterface.IScreen;
 import net.wurstclient.other_features.VanillaSpoofOtf;
 import net.wurstclient.settings.CheckboxSetting;
@@ -83,18 +82,12 @@ public class WurstOptionsScreen extends Screen
 	
 	private void addManagerButtons()
 	{
-		XRayHack xRayHack = WurstClient.INSTANCE.getHax().xRayHack;
-		
 		new WurstOptionsButton(-50, 24, () -> "Keybinds",
 			"Keybinds allow you to toggle any hack\n"
 				+ "or command by simply pressing a\n" + "button.",
 			b -> client.setScreen(new KeybindManagerScreen(this)));
 		
-		new WurstOptionsButton(-50, 48, () -> "X-Ray Blocks",
-			"Manager for the blocks\n" + "that X-Ray will show.",
-			b -> xRayHack.openBlockListEditor(this));
-		
-		new WurstOptionsButton(-50, 72, () -> "Zoom",
+		new WurstOptionsButton(-50, 48 /* originally: 72 */, () -> "Zoom",
 			"The Zoom Manager allows you to\n"
 				+ "change the zoom key, how far it\n"
 				+ "will zoom in and more.",

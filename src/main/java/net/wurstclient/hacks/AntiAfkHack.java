@@ -99,8 +99,7 @@ public final class AntiAfkHack extends Hack
 			if(timer > 0)
 			{
 				timer--;
-				if(!WURST.getHax().jesusHack.isEnabled())
-					MC.options.jumpKey.setPressed(MC.player.isTouchingWater());
+				MC.options.jumpKey.setPressed(MC.player.isTouchingWater());
 				return;
 			}
 			

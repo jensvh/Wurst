@@ -20,16 +20,6 @@ import net.wurstclient.WurstClient;
 @Mixin(InGameOverlayRenderer.class)
 public class InGameOverlayRendererMixin
 {
-	@Inject(at = {@At("HEAD")},
-		method = {
-			"renderFireOverlay(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V"},
-		cancellable = true)
-	private static void onRenderFireOverlay(MinecraftClient minecraftClient,
-		MatrixStack matrixStack, CallbackInfo ci)
-	{
-		if(WurstClient.INSTANCE.getHax().noFireOverlayHack.isEnabled())
-			ci.cancel();
-	}
 	
 	@Inject(at = {@At("HEAD")},
 		method = {

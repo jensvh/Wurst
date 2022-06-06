@@ -33,14 +33,11 @@ public class PathFinder
 		WurstClient.MC.player.getAbilities().creativeMode;
 	private final boolean creativeFlying =
 		WurstClient.MC.player.getAbilities().flying;
-	protected final boolean flying =
-		creativeFlying || wurst.getHax().flightHack.isEnabled();
+	protected final boolean flying = creativeFlying;
 	private final boolean immuneToFallDamage =
 		invulnerable || wurst.getHax().noFallHack.isEnabled();
 	private final boolean noWaterSlowdown =
 		wurst.getHax().antiWaterPushHack.isPreventingSlowdown();
-	private final boolean jesus = wurst.getHax().jesusHack.isEnabled();
-	private final boolean spider = wurst.getHax().spiderHack.isEnabled();
 	protected boolean fallingAllowed = true;
 	protected boolean divingAllowed = true;
 	
@@ -285,7 +282,7 @@ public class PathFinder
 		
 		return material.blocksMovement()
 			&& !(block instanceof AbstractSignBlock)
-			|| block instanceof LadderBlock || jesus
+			|| block instanceof LadderBlock
 				&& (material == Material.WATER || material == Material.LAVA);
 	}
 	
@@ -402,7 +399,7 @@ public class PathFinder
 	{
 		// check if this block works for climbing
 		Block block = BlockUtils.getBlock(pos);
-		if(!spider && !(block instanceof LadderBlock)
+		if(!(block instanceof LadderBlock)
 			&& !(block instanceof VineBlock))
 			return false;
 		
@@ -621,14 +618,11 @@ public class PathFinder
 		
 		// check player abilities
 		if(invulnerable != WurstClient.MC.player.getAbilities().creativeMode
-			|| flying != (creativeFlying
-				|| wurst.getHax().flightHack.isEnabled())
+			|| flying != creativeFlying
 			|| immuneToFallDamage != (invulnerable
 				|| wurst.getHax().noFallHack.isEnabled())
 			|| noWaterSlowdown != wurst.getHax().antiWaterPushHack
-				.isPreventingSlowdown()
-			|| jesus != wurst.getHax().jesusHack.isEnabled()
-			|| spider != wurst.getHax().spiderHack.isEnabled())
+				.isPreventingSlowdown())
 			return false;
 		
 		// if index is zero, check if first pos is safe

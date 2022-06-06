@@ -156,14 +156,9 @@ public final class FightBotHack extends Hack
 	public void onEnable()
 	{
 		// disable other killauras
-		WURST.getHax().clickAuraHack.setEnabled(false);
-		WURST.getHax().crystalAuraHack.setEnabled(false);
 		WURST.getHax().killauraLegitHack.setEnabled(false);
 		WURST.getHax().killauraHack.setEnabled(false);
-		WURST.getHax().multiAuraHack.setEnabled(false);
-		WURST.getHax().protectHack.setEnabled(false);
 		WURST.getHax().triggerBotHack.setEnabled(false);
-		WURST.getHax().tpAuraHack.setEnabled(false);
 		WURST.getHax().tunnellerHack.setEnabled(false);
 		
 		pathFinder = new EntityPathFinder(MC.player);
@@ -312,8 +307,7 @@ public final class FightBotHack extends Hack
 			
 			// control height if flying
 			if(!MC.player.isOnGround()
-				&& (MC.player.getAbilities().flying
-					|| WURST.getHax().flightHack.isEnabled())
+				&& MC.player.getAbilities().flying
 				&& MC.player.squaredDistanceTo(entity.getX(), MC.player.getY(),
 					entity.getZ()) <= MC.player.squaredDistanceTo(
 						MC.player.getX(), entity.getY(), MC.player.getZ()))

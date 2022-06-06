@@ -150,7 +150,6 @@ public final class FollowHack extends Hack
 	public void onEnable()
 	{
 		WURST.getHax().fightBotHack.setEnabled(false);
-		WURST.getHax().protectHack.setEnabled(false);
 		WURST.getHax().tunnellerHack.setEnabled(false);
 		
 		if(entity == null)
@@ -343,8 +342,7 @@ public final class FollowHack extends Hack
 			
 			// control height if flying
 			if(!MC.player.isOnGround()
-				&& (MC.player.getAbilities().flying
-					|| WURST.getHax().flightHack.isEnabled())
+				&& MC.player.getAbilities().flying
 				&& MC.player.squaredDistanceTo(entity.getX(), MC.player.getY(),
 					entity.getZ()) <= MC.player.squaredDistanceTo(
 						MC.player.getX(), entity.getY(), MC.player.getZ()))

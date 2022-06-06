@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Wurst-Imperium and contributors.
+* Copyright (c) 2014-2022 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -107,19 +107,9 @@ public class FlyPathProcessor extends PathProcessor
 					v.z / Math.max(Math.abs(v.z) * 50, 1));
 		}
 		
-		Vec3d vecInPos = new Vec3d(nextPos.getX() + 0.5, nextPos.getY() + 0.1,
-			nextPos.getZ() + 0.5);
-		
 		// horizontal movement
 		if(horizontal)
 		{
-			if(!creativeFlying && MC.player.getPos().distanceTo(
-				vecInPos) <= WURST.getHax().flightHack.speed.getValue())
-			{
-				MC.player.setPosition(vecInPos.x, vecInPos.y, vecInPos.z);
-				return;
-			}
-			
 			MC.options.forwardKey.setPressed(true);
 			
 			if(MC.player.horizontalCollision)
@@ -131,13 +121,6 @@ public class FlyPathProcessor extends PathProcessor
 			// vertical movement
 		}else if(y)
 		{
-			if(!creativeFlying && MC.player.getPos().distanceTo(
-				vecInPos) <= WURST.getHax().flightHack.speed.getValue())
-			{
-				MC.player.setPosition(vecInPos.x, vecInPos.y, vecInPos.z);
-				return;
-			}
-			
 			if(posVec.y < nextBox.minY)
 				MC.options.jumpKey.setPressed(true);
 			else
