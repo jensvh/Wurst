@@ -95,6 +95,7 @@ import net.wurstclient.hacks.RainbowUiHack;
 import net.wurstclient.hacks.SafeWalkHack;
 import net.wurstclient.hacks.ScaffoldWalkHack;
 import net.wurstclient.hacks.SearchHack;
+import net.wurstclient.hacks.SlimeChunkFinderHack;
 import net.wurstclient.hacks.SneakHack;
 import net.wurstclient.hacks.TillauraHack;
 import net.wurstclient.hacks.TooManyHaxHack;
@@ -180,6 +181,7 @@ public final class HackList implements UpdateListener
 	public final SafeWalkHack safeWalkHack = new SafeWalkHack();
 	public final ScaffoldWalkHack scaffoldWalkHack = new ScaffoldWalkHack();
 	public final SearchHack searchHack = new SearchHack();
+	public final SlimeChunkFinderHack slimeChunkFinderHack = new SlimeChunkFinderHack();
 	public final SneakHack sneakHack = new SneakHack();
 	public final TillauraHack tillauraHack = new TillauraHack();
 	public final TooManyHaxHack tooManyHaxHack = new TooManyHaxHack();
@@ -188,7 +190,7 @@ public final class HackList implements UpdateListener
 	public final TriggerBotHack triggerBotHack = new TriggerBotHack();
 	public final TrueSightHack trueSightHack = new TrueSightHack();
 	public final TunnellerHack tunnellerHack = new TunnellerHack();
-	
+
 	private final TreeMap<String, Hack> hax =
 		new TreeMap<>(String::compareToIgnoreCase);
 	
