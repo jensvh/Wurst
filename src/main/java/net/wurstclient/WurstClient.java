@@ -33,7 +33,6 @@ import net.wurstclient.events.GUIRenderListener;
 import net.wurstclient.events.KeyPressListener;
 import net.wurstclient.events.PostMotionListener;
 import net.wurstclient.events.PreMotionListener;
-import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.hack.HackList;
 import net.wurstclient.hud.IngameHUD;
@@ -44,7 +43,6 @@ import net.wurstclient.navigator.Navigator;
 import net.wurstclient.other_feature.OtfList;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.SettingsFile;
-import net.wurstclient.update.WurstUpdater;
 import net.wurstclient.util.json.JsonException;
 
 public enum WurstClient
@@ -74,7 +72,6 @@ public enum WurstClient
 	
 	private boolean enabled = true;
 	private static boolean guiInitialized;
-	private WurstUpdater updater;
 	private Path wurstFolder;
 	
 	private KeyBinding zoomKey;
@@ -126,9 +123,6 @@ public enum WurstClient
 		rotationFaker = new RotationFaker();
 		eventManager.add(PreMotionListener.class, rotationFaker);
 		eventManager.add(PostMotionListener.class, rotationFaker);
-		
-		updater = new WurstUpdater();
-		eventManager.add(UpdateListener.class, updater);
 		
 		Path altsFile = wurstFolder.resolve("alts.encrypted_json");
 		Path encFolder =
@@ -289,11 +283,6 @@ public enum WurstClient
 			hax.panicHack.setEnabled(true);
 			hax.panicHack.onUpdate();
 		}
-	}
-	
-	public WurstUpdater getUpdater()
-	{
-		return updater;
 	}
 	
 	public Path getWurstFolder()
