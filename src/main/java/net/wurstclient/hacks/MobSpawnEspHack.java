@@ -7,7 +7,15 @@
  */
 package net.wurstclient.hacks;
 
-import java.util.*;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
@@ -43,6 +51,7 @@ import net.wurstclient.events.RenderListener;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.settings.CheckboxSetting;
+import net.wurstclient.settings.ColorSetting;
 import net.wurstclient.settings.EnumSetting;
 import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
@@ -64,6 +73,14 @@ public final class MobSpawnEspHack extends Hack
 	private final CheckboxSetting depthTest =
 		new CheckboxSetting("Depth test", true);
 	
+	private final ColorSetting dayColor = 
+		new ColorSetting("DaySetting", "Color for block where entities can spawn all day.",
+		new Color(1, 0, 1, 0.5f));
+	
+	private final ColorSetting nightColor = 
+		new ColorSetting("NightColor", "Color for block where entities can spawn only at night.", 
+		new Color(1, 1, 0, 0.5f));
+	
 	private final HashMap<Chunk, ChunkScanner> scanners = new HashMap<>();
 	private ExecutorService pool;
 	
@@ -74,6 +91,8 @@ public final class MobSpawnEspHack extends Hack
 		addSetting(drawDistance);
 		addSetting(loadingSpeed);
 		addSetting(depthTest);
+		addSetting(dayColor);
+		addSetting(nightColor);
 	}
 	
 	@Override
@@ -125,7 +144,7 @@ public final class MobSpawnEspHack extends Hack
 			if(scanners.containsKey(chunk))
 				continue;
 			
-			ChunkScanner scanner = new ChunkScanner(chunk);
+			ChunkScanner scanner = new ChunkScanner(chunk, dayColor.getColor(), nightColor.getColor());
 			scanners.put(chunk, scanner);
 			scanner.future = pool.submit(() -> scanner.scan());
 		}
@@ -271,9 +290,14 @@ public final class MobSpawnEspHack extends Hack
 		private boolean doneScanning;
 		private boolean doneCompiling;
 		
-		public ChunkScanner(Chunk chunk)
+		private Color dayColor;
+		private Color nightColor;
+		
+		public ChunkScanner(Chunk chunk, Color dayColor, Color nightColor)
 		{
 			this.chunk = chunk;
+			this.dayColor = dayColor;
+			this.nightColor = nightColor;
 		}
 		
 		private void scan()
@@ -345,15 +369,20 @@ public final class MobSpawnEspHack extends Hack
 				.forEach(pos -> {
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ())
-						.color(1, 0, 0, 0.5F).next();
-					bufferBuilder.vertex(pos.getX() + 1, pos.getY() + 0.01,
-						pos.getZ() + 1).color(1, 0, 0, 0.5F).next();
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.next();
+					bufferBuilder
+						.vertex(pos.getX() + 1, pos.getY() + 0.01, pos.getZ() + 1)
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.next();
 					bufferBuilder
 						.vertex(pos.getX() + 1, pos.getY() + 0.01, pos.getZ())
-						.color(1, 0, 0, 0.5F).next();
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.next();
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ() + 1)
-						.color(1, 0, 0, 0.5F).next();
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.next();
 				});
 			
 			new ArrayList<>(yellow).stream().filter(Objects::nonNull)
@@ -362,15 +391,20 @@ public final class MobSpawnEspHack extends Hack
 				.forEach(pos -> {
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ())
-						.color(1, 1, 0, 0.5F).next();
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.next();
 					bufferBuilder.vertex(pos.getX() + 1, pos.getY() + 0.01,
-						pos.getZ() + 1).color(1, 1, 0, 0.5F).next();
+						pos.getZ() + 1)
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.next();
 					bufferBuilder
 						.vertex(pos.getX() + 1, pos.getY() + 0.01, pos.getZ())
-						.color(1, 1, 0, 0.5F).next();
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.next();
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ() + 1)
-						.color(1, 1, 0, 0.5F).next();
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.next();
 				});
 			
 			bufferBuilder.end();

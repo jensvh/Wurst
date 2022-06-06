@@ -39,6 +39,7 @@ public final class EditColorScreen extends Screen
 	private TextFieldWidget redValueField;
 	private TextFieldWidget greenValueField;
 	private TextFieldWidget blueValueField;
+	private TextFieldWidget alphaValueField;
 	
 	private ButtonWidget doneButton;
 	
@@ -111,10 +112,17 @@ public final class EditColorScreen extends Screen
 		blueValueField.setMaxLength(3);
 		blueValueField.setChangedListener(s -> updateColor(false));
 		
+		alphaValueField = new TextFieldWidget(tr, fieldsX + 75, fieldsY + 70,
+			50, 20, new LiteralText(""));
+		alphaValueField.setText("" + color.getAlpha());
+		alphaValueField.setMaxLength(3);
+		alphaValueField.setChangedListener(s -> updateColor(false));
+		
 		addSelectableChild(hexValueField);
 		addSelectableChild(redValueField);
 		addSelectableChild(greenValueField);
 		addSelectableChild(blueValueField);
+		addSelectableChild(alphaValueField);
 		
 		setInitialFocus(hexValueField);
 		hexValueField.setTextFieldFocused(true);
@@ -136,8 +144,9 @@ public final class EditColorScreen extends Screen
 		if(hex)
 			newColor = ColorUtils.tryParseHex("#" + hexValueField.getText());
 		else
-			newColor = ColorUtils.tryParseRGB(redValueField.getText(),
-				greenValueField.getText(), blueValueField.getText());
+			newColor = ColorUtils.tryParseRGBA(redValueField.getText(),
+				greenValueField.getText(), blueValueField.getText(),
+				alphaValueField.getText());
 		
 		if(newColor == null || newColor.equals(color))
 			return;
@@ -148,6 +157,7 @@ public final class EditColorScreen extends Screen
 		redValueField.setText("" + color.getRed());
 		greenValueField.setText("" + color.getGreen());
 		blueValueField.setText("" + color.getBlue());
+		alphaValueField.setText("" + color.getAlpha());
 		ignoreChanges = false;
 	}
 	
@@ -164,6 +174,7 @@ public final class EditColorScreen extends Screen
 		redValueField.tick();
 		greenValueField.tick();
 		blueValueField.tick();
+		alphaValueField.tick();
 	}
 	
 	@Override
@@ -197,11 +208,14 @@ public final class EditColorScreen extends Screen
 			fieldsY + 6 + 35, 0x00FF00);
 		tr.draw(matrixStack, "B:", fieldsX + 150 - 3 - tr.getWidth("B:"),
 			fieldsY + 6 + 35, 0x0000FF);
+		tr.draw(matrixStack, "A:", fieldsX + 75 - 3 - tr.getWidth("A:"),
+				fieldsY + 6 + 70, 0xFFFFFF);
 		
 		hexValueField.render(matrixStack, mouseX, mouseY, partialTicks);
 		redValueField.render(matrixStack, mouseX, mouseY, partialTicks);
 		greenValueField.render(matrixStack, mouseX, mouseY, partialTicks);
 		blueValueField.render(matrixStack, mouseX, mouseY, partialTicks);
+		alphaValueField.render(matrixStack, mouseY, mouseY, partialTicks);
 		
 		// Color preview
 		
@@ -230,6 +244,7 @@ public final class EditColorScreen extends Screen
 		String r = redValueField.getText();
 		String g = greenValueField.getText();
 		String b = blueValueField.getText();
+		String a = alphaValueField.getText();
 		
 		init(client, width, height);
 		
@@ -237,6 +252,7 @@ public final class EditColorScreen extends Screen
 		redValueField.setText(r);
 		greenValueField.setText(g);
 		blueValueField.setText(b);
+		alphaValueField.setText(a);
 	}
 	
 	@Override
@@ -291,6 +307,7 @@ public final class EditColorScreen extends Screen
 		redValueField.setText("" + color.getRed());
 		greenValueField.setText("" + color.getGreen());
 		blueValueField.setText("" + color.getBlue());
+		alphaValueField.setText("" + color.getAlpha());
 	}
 	
 	@Override

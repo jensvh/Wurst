@@ -61,18 +61,18 @@ public enum ColorUtils
 		}
 	}
 	
-	public static Color parseRGB(String red, String green, String blue)
+	public static Color parseRGBA(String red, String green, String blue, String alpha)
 		throws JsonException
 	{
-		String[] rgbStrings = {red, green, blue};
-		int[] rgb = new int[3];
+		String[] rgbaStrings = {red, green, blue, alpha};
+		int[] rgba = new int[4];
 		
 		try
 		{
-			for(int i = 0; i < rgb.length; i++)
+			for(int i = 0; i < rgba.length; i++)
 			{
-				int channel = Integer.parseInt(rgbStrings[i]);
-				rgb[i] = MathHelper.clamp(channel, 0, 255);
+				int channel = Integer.parseInt(rgbaStrings[i]);
+				rgba[i] = MathHelper.clamp(channel, 0, 255);
 			}
 			
 		}catch(NumberFormatException e)
@@ -80,14 +80,14 @@ public enum ColorUtils
 			throw new JsonException(e);
 		}
 		
-		return new Color(rgb[0], rgb[1], rgb[2]);
+		return new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
 	}
 	
-	public static Color tryParseRGB(String red, String green, String blue)
+	public static Color tryParseRGBA(String red, String green, String blue, String alpha)
 	{
 		try
 		{
-			return parseRGB(red, green, blue);
+			return parseRGBA(red, green, blue, alpha);
 			
 		}catch(JsonException e)
 		{

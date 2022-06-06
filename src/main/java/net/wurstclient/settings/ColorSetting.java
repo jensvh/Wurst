@@ -73,6 +73,11 @@ public final class ColorSetting extends Setting
 		return color.getBlue();
 	}
 	
+	public int getAlpha()
+	{
+		return color.getAlpha();
+	}
+	
 	public Color getDefaultColor()
 	{
 		return defaultColor;

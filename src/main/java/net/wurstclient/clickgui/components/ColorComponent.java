@@ -77,6 +77,7 @@ public final class ColorComponent extends Component
 				String tooltip = "\u00a7cR:\u00a7r" + setting.getRed();
 				tooltip += " \u00a7aG:\u00a7r" + setting.getGreen();
 				tooltip += " \u00a79B:\u00a7r" + setting.getBlue();
+				tooltip += " \u00A7fA:\u00a7r" + setting.getAlpha();
 				tooltip += "\n\n\u00a7e[left-click]\u00a7r to edit";
 				tooltip += "\n\u00a7e[right-click]\u00a7r to reset";
 				GUI.setTooltip(tooltip);
@@ -126,6 +127,7 @@ public final class ColorComponent extends Component
 		int y3, boolean hovering)
 	{
 		float[] color = setting.getColorF();
+		float alpha = (float)setting.getAlpha() / 255f;
 		float[] acColor = GUI.getAcColor();
 		float opacity = GUI.getOpacity();
 		
@@ -133,7 +135,7 @@ public final class ColorComponent extends Component
 		BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
 		
 		RenderSystem.setShaderColor(color[0], color[1], color[2],
-			hovering ? 1F : opacity);
+			hovering ? alpha : opacity);
 		
 		bufferBuilder.begin(VertexFormat.DrawMode.QUADS,
 			VertexFormats.POSITION);
