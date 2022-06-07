@@ -10,8 +10,6 @@ package net.wurstclient.events;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.gui.hud.ChatHudLine;
-import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.wurstclient.event.CancellableEvent;
 import net.wurstclient.event.Listener;
@@ -24,10 +22,10 @@ public interface ChatInputListener extends Listener
 		extends CancellableEvent<ChatInputListener>
 	{
 		private Text component;
-		private List<ChatHudLine<OrderedText>> chatLines;
+		private List<String> chatLines;
 		
 		public ChatInputEvent(Text component,
-			List<ChatHudLine<OrderedText>> visibleMessages)
+			List<String> visibleMessages)
 		{
 			this.component = component;
 			chatLines = visibleMessages;
@@ -43,7 +41,7 @@ public interface ChatInputListener extends Listener
 			this.component = component;
 		}
 		
-		public List<ChatHudLine<OrderedText>> getChatLines()
+		public List<String> getChatLines()
 		{
 			return chatLines;
 		}

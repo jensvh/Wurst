@@ -76,6 +76,7 @@ import net.wurstclient.hacks.KillauraHack;
 import net.wurstclient.hacks.KillauraLegitHack;
 import net.wurstclient.hacks.MobEspHack;
 import net.wurstclient.hacks.MobSpawnEspHack;
+import net.wurstclient.hacks.NameNotifierHack;
 import net.wurstclient.hacks.NameTagsHack;
 import net.wurstclient.hacks.NavigatorHack;
 import net.wurstclient.hacks.NoBackgroundHack;
@@ -162,6 +163,7 @@ public final class HackList implements UpdateListener
 	public final KillauraHack killauraHack = new KillauraHack();
 	public final MobEspHack mobEspHack = new MobEspHack();
 	public final MobSpawnEspHack mobSpawnEspHack = new MobSpawnEspHack();
+	public final NameNotifierHack nameNotifierHack = new NameNotifierHack();
 	public final NameTagsHack nameTagsHack = new NameTagsHack();
 	public final NavigatorHack navigatorHack = new NavigatorHack();
 	public final NoBackgroundHack noBackgroundHack = new NoBackgroundHack();
