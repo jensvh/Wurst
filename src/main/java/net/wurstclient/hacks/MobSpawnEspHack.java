@@ -75,7 +75,7 @@ public final class MobSpawnEspHack extends Hack
 	
 	private final ColorSetting dayColor = 
 		new ColorSetting("DaySetting", "Color for block where entities can spawn all day.",
-		new Color(1, 0, 1, 0.5f));
+		new Color(1, 0, 0, 0.5f));
 	
 	private final ColorSetting nightColor = 
 		new ColorSetting("NightColor", "Color for block where entities can spawn only at night.", 
@@ -369,19 +369,19 @@ public final class MobSpawnEspHack extends Hack
 				.forEach(pos -> {
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ())
-						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), dayColor.getAlpha())
 						.next();
 					bufferBuilder
 						.vertex(pos.getX() + 1, pos.getY() + 0.01, pos.getZ() + 1)
-						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), dayColor.getAlpha())
 						.next();
 					bufferBuilder
 						.vertex(pos.getX() + 1, pos.getY() + 0.01, pos.getZ())
-						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), dayColor.getAlpha())
 						.next();
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ() + 1)
-						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), 0.5f)
+						.color(dayColor.getRed(), dayColor.getGreen(), dayColor.getBlue(), dayColor.getAlpha())
 						.next();
 				});
 			
@@ -391,19 +391,19 @@ public final class MobSpawnEspHack extends Hack
 				.forEach(pos -> {
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ())
-						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), nightColor.getAlpha())
 						.next();
 					bufferBuilder.vertex(pos.getX() + 1, pos.getY() + 0.01,
 						pos.getZ() + 1)
-						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), nightColor.getAlpha())
 						.next();
 					bufferBuilder
 						.vertex(pos.getX() + 1, pos.getY() + 0.01, pos.getZ())
-						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), nightColor.getAlpha())
 						.next();
 					bufferBuilder
 						.vertex(pos.getX(), pos.getY() + 0.01, pos.getZ() + 1)
-						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), 0.5f)
+						.color(nightColor.getRed(), nightColor.getGreen(), nightColor.getBlue(), nightColor.getAlpha())
 						.next();
 				});
 			

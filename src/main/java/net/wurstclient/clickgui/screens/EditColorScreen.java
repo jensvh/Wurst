@@ -90,7 +90,7 @@ public final class EditColorScreen extends Screen
 		hexValueField = new TextFieldWidget(tr, fieldsX, fieldsY, 92, 20,
 			new LiteralText(""));
 		hexValueField.setText(ColorUtils.toHex(color).substring(1));
-		hexValueField.setMaxLength(6);
+		hexValueField.setMaxLength(8);
 		hexValueField.setChangedListener(s -> updateColor(true));
 		
 		// RGB fields

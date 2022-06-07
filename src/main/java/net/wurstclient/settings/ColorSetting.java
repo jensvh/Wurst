@@ -126,14 +126,14 @@ public final class ColorSetting extends Setting
 			+ getName().toLowerCase().replace(" ", "_") + " ";
 		
 		LinkedHashSet<PossibleKeybind> pkb = new LinkedHashSet<>();
-		addPKB(pkb, command + "#FF0000", description + "red");
-		addPKB(pkb, command + "#00FF00", description + "green");
-		addPKB(pkb, command + "#0000FF", description + "blue");
-		addPKB(pkb, command + "#FFFF00", description + "yellow");
-		addPKB(pkb, command + "#00FFFF", description + "cyan");
-		addPKB(pkb, command + "#FF00FF", description + "magenta");
-		addPKB(pkb, command + "#FFFFFF", description + "white");
-		addPKB(pkb, command + "#000000", description + "black");
+		addPKB(pkb, command + "#FFFF0000", description + "red");
+		addPKB(pkb, command + "#FF00FF00", description + "green");
+		addPKB(pkb, command + "#FF0000FF", description + "blue");
+		addPKB(pkb, command + "#FFFFFF00", description + "yellow");
+		addPKB(pkb, command + "#FF00FFFF", description + "cyan");
+		addPKB(pkb, command + "#FFFF00FF", description + "magenta");
+		addPKB(pkb, command + "#FFFFFFFF", description + "white");
+		addPKB(pkb, command + "#FF000000", description + "black");
 		return pkb;
 	}
 	

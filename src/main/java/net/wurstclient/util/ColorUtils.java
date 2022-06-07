@@ -18,7 +18,8 @@ public enum ColorUtils
 	
 	public static String toHex(Color color)
 	{
-		return String.format("#%06X", color.getRGB() & 0x00FFFFFF);
+		return String.format("#%02x%02x%02x%02x", color.getAlpha(),color.getRed(), color.getGreen(), color.getBlue());
+		//return String.format("#%08X", (color.getRGB() & 0x00FFFFFF) | (color.getAlpha() & 0xFF000000));
 	}
 	
 	public static Color parseHex(String s) throws JsonException
@@ -26,19 +27,19 @@ public enum ColorUtils
 		if(!s.startsWith("#"))
 			throw new JsonException("Missing '#' prefix.");
 		
-		if(s.length() != 7)
+		if(s.length() != 9)
 			throw new JsonException(
-				"Expected String of length 7, got " + s.length() + " instead.");
+				"Expected String of length 9, got " + s.length() + " instead.");
 		
-		int[] rgb = new int[3];
+		int[] argb = new int[4];
 		
 		try
 		{
-			for(int i = 0; i < rgb.length; i++)
+			for(int i = 0; i < argb.length; i++)
 			{
 				String channelString = s.substring(i * 2 + 1, i * 2 + 3);
 				int channel = Integer.parseUnsignedInt(channelString, 16);
-				rgb[i] = MathHelper.clamp(channel, 0, 255);
+				argb[i] = MathHelper.clamp(channel, 0, 255);
 			}
 			
 		}catch(NumberFormatException e)
@@ -46,7 +47,7 @@ public enum ColorUtils
 			throw new JsonException(e);
 		}
 		
-		return new Color(rgb[0], rgb[1], rgb[2]);
+		return new Color(argb[1], argb[2], argb[3], argb[0]);
 	}
 	
 	public static Color tryParseHex(String s)

@@ -181,7 +181,7 @@ public final class ColorComponent extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		return MC.textRenderer.getWidth(setting.getName() + "#FFFFFF") + 6;
+		return MC.textRenderer.getWidth(setting.getName() + "#FFFFFFFF") + 6;
 	}
 	
 	@Override
