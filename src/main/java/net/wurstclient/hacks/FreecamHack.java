@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
@@ -29,10 +30,16 @@ import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3d;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
-import net.wurstclient.events.*;
+import net.wurstclient.events.CameraTransformViewBobbingListener;
+import net.wurstclient.events.IsNormalCubeListener;
+import net.wurstclient.events.IsPlayerInWaterListener;
+import net.wurstclient.events.PacketOutputListener;
+import net.wurstclient.events.PlayerMoveListener;
+import net.wurstclient.events.RenderListener;
+import net.wurstclient.events.SetOpaqueCubeListener;
+import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.DontSaveState;
 import net.wurstclient.hack.Hack;
-import net.wurstclient.mixinterface.IClientPlayerEntity;
 import net.wurstclient.mixinterface.IKeyBinding;
 import net.wurstclient.settings.CheckboxSetting;
 import net.wurstclient.settings.ColorSetting;
@@ -137,9 +144,9 @@ public final class FreecamHack extends Hack
 	}
 	
 	@Override
-	public void onPlayerMove(IClientPlayerEntity player)
+	public void onPlayerMove(AbstractClientPlayerEntity player)
 	{
-		player.setNoClip(true);
+		player.noClip = true;
 	}
 	
 	@Override

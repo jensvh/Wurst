@@ -38,6 +38,7 @@ import net.wurstclient.hacks.AutoFarmHack;
 import net.wurstclient.hacks.AutoFishHack;
 import net.wurstclient.hacks.AutoLeaveHack;
 import net.wurstclient.hacks.AutoMineHack;
+import net.wurstclient.hacks.AutoMlgHack;
 import net.wurstclient.hacks.AutoReconnectHack;
 import net.wurstclient.hacks.AutoRespawnHack;
 import net.wurstclient.hacks.AutoSignHack;
@@ -124,6 +125,7 @@ public final class HackList implements UpdateListener
 	public final AutoFarmHack autoFarmHack = new AutoFarmHack();
 	public final AutoFishHack autoFishHack = new AutoFishHack();
 	public final AutoMineHack autoMineHack = new AutoMineHack();
+	public final AutoMlgHack autoMlgHack = new AutoMlgHack();
 	public final AutoReconnectHack autoReconnectHack = new AutoReconnectHack();
 	public final AutoRespawnHack autoRespawnHack = new AutoRespawnHack();
 	public final AutoSignHack autoSignHack = new AutoSignHack();

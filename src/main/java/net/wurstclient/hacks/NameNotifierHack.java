@@ -44,9 +44,8 @@ public class NameNotifierHack extends Hack implements ChatInputListener
 		{
 			if (message.contains(nickNames[i].toLowerCase()))
 			{
-				WurstClient.MC.world.playSound(WurstClient.MC.player.getBlockPos(),
-						SoundEvents.BLOCK_NOTE_BLOCK_GUITAR, SoundCategory.MASTER,
-						1f, 1f, false);
+				WurstClient.MC.player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_GUITAR, SoundCategory.MASTER,
+						1f, 1f);
 				return;
 			}
 		}

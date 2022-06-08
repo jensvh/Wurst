@@ -9,19 +9,19 @@ package net.wurstclient.events;
 
 import java.util.ArrayList;
 
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.wurstclient.event.Event;
 import net.wurstclient.event.Listener;
-import net.wurstclient.mixinterface.IClientPlayerEntity;
 
 public interface PlayerMoveListener extends Listener
 {
-	public void onPlayerMove(IClientPlayerEntity player);
+	public void onPlayerMove(AbstractClientPlayerEntity player);
 	
 	public static class PlayerMoveEvent extends Event<PlayerMoveListener>
 	{
-		private final IClientPlayerEntity player;
+		private final AbstractClientPlayerEntity player;
 		
-		public PlayerMoveEvent(IClientPlayerEntity player)
+		public PlayerMoveEvent(AbstractClientPlayerEntity player)
 		{
 			this.player = player;
 		}
