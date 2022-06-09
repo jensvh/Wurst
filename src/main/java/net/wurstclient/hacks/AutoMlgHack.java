@@ -14,6 +14,7 @@ import net.wurstclient.SearchTags;
 import net.wurstclient.WurstClient;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
+import net.wurstclient.util.ChatUtils;
 
 @SearchTags(
 { "MLG", "Bucket", "Water", "Fall" })
@@ -64,7 +65,7 @@ public class AutoMlgHack extends Hack implements UpdateListener
 		{
 			int slot = player.getInventory().getSlotWithStack(new ItemStack(Items.WATER_BUCKET));
 
-			if (slot < 0 && slot > 9)
+			if (slot < 0 || slot > 9)
 				return;
 
 			player.getInventory().selectedSlot = slot;
