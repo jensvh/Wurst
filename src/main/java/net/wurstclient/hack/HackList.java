@@ -30,6 +30,7 @@ import net.wurstclient.hacks.AntiKnockbackHack;
 import net.wurstclient.hacks.AntiSpamHack;
 import net.wurstclient.hacks.AntiWaterPushHack;
 import net.wurstclient.hacks.AntiWobbleHack;
+import net.wurstclient.hacks.AttackNotifierHack;
 import net.wurstclient.hacks.AutoArmorHack;
 import net.wurstclient.hacks.AutoBuildHack;
 import net.wurstclient.hacks.AutoDropHack;
@@ -117,6 +118,7 @@ public final class HackList implements UpdateListener
 	public final AntiSpamHack antiSpamHack = new AntiSpamHack();
 	public final AntiWaterPushHack antiWaterPushHack = new AntiWaterPushHack();
 	public final AntiWobbleHack antiWobbleHack = new AntiWobbleHack();
+	public final AttackNotifierHack attackNotifierHack = new AttackNotifierHack();
 	public final AutoArmorHack autoArmorHack = new AutoArmorHack();
 	public final AutoBuildHack autoBuildHack = new AutoBuildHack();
 	public final AutoDropHack autoDropHack = new AutoDropHack();
